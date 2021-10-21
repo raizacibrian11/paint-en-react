@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React,{Fragment,useState, useRef} from 'react';
+import HeaderApp from './headerApp.js';
+import Boards from './boards.js';
 
 function App() {
+  const board = [];
+  for(let i = 0; i<100;i++){
+    board.push({id:i+1,
+      color:"#FFF"});
+  }
+  const [selectcolor,setselectcolor] = useState();
+  const [boardilust,setboardilust] = useState(board);
+  const ilustration = useRef();
+  const making = useRef();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="supercontainer">
+      <HeaderApp selectcolor={selectcolor} setselectcolor={setselectcolor} setboardilust={setboardilust} ilustration={ilustration} making={making}/>
+      <main className="main">
+        <Boards selectcolor={selectcolor} boardilust={boardilust} setboardilust={setboardilust} ilustration={ilustration}making={making}/>
+      </main>
     </div>
   );
 }
